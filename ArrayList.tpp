@@ -1,16 +1,82 @@
+#include "ArrayList.hpp"
+
 template <typename T>
 void ArrayList<T>::bubbleSort() {
     // TODO
+    // start at beginning of list, compare elements and swap if needed 
+    for (int i = 0; i < this->length - 1; i++)
+    {
+        // if no swaps made, list sorted 
+        bool swapped = false;
+       
+       // comparison 
+        for (int j = 0; j < this->length - i - 1; j++)
+        {
+            numComps++;
+            
+            if (buffer[j] > buffer[j + 1])
+            {
+                swap(j, j + 1);
+                numSwaps++;
+                swapped = true; 
+            }
+        } 
+    }
 }
 
 template <typename T>
 void ArrayList<T>::insertionSort() {
     // TODO
+    // start at second element, compare elements before & swap if needed 
+    for (int i = 1; i < this->length; i++)
+    {
+        T key = buffer[i];
+        int j = i - 1; 
+        
+        // compare key to elements before it, swap if needed
+        while (j >= 0)
+        {
+            numComps++;
+            if (buffer[j] > key)
+            {
+                swap(j, j + 1);
+                numSwaps++;
+                j--;
+            }
+            else
+            {
+                break;
+            }
+        }
+
+    }
 }
 
 template <typename T>
 void ArrayList<T>::selectionSort() {
-    // TODO
+    // TODO 
+    // find smallest element & place in correct position 
+    for (int i = 0; i < this->length - 1; i++)
+    {
+        int min = i; 
+        // find smallest element in unsorted portion of list
+        for (int j = i + 1; j < this->length; j++)
+        {
+            numComps++;
+            if (buffer[j] < buffer[min])
+            {
+                min = j;
+            }
+
+        }
+            // swap 
+            if (min != i)
+            {
+                swap(i, min);
+                numSwaps++;
+            }
+    }
+
 }
 
 /*******************************************************************************
